@@ -6,17 +6,13 @@
 <body>
     <h3>Contact Form</h3>
     <?php
-    // Include functions or define constants here
+    
     require_once "vendor/autoload.php";
-
-    // Define default_view constant
-
     $desired_view = isset($_GET["view"]) ? $_GET["view"] : default_view;
     if ($desired_view == "display") {
-        // Display_All_Submits() ; // Function not defined in this file
+         Display_All_Submits() ; 
     }
-    else {
-        // store_submits_to_file() ; // Function not defined in this file
+    else { 
 
         if (store_submits_to_file("yousef", "yalsayed19@gmail.com")) {
             die("<br>Contact saved successfully" . "<br/> To visit all contacts <a href='index.php?view=display'>click here </a>");
