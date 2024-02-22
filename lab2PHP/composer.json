@@ -1,0 +1,17 @@
+{
+    "name": "dell/lab2php",
+        "autoload": {
+            "files": [
+                "functions.php",
+                "config.php"
+            ]
+        }
+    ,
+    "authors": [
+        {
+            "name": "YousefAlsayed4",
+            "email": "yalsayed19@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -6,6 +6,26 @@
 <body>
     <h3>Contact Form</h3>
     <?php
+    // Include functions or define constants here
+    require_once "vendor/autoload.php";
+
+    // Define default_view constant
+
+    $desired_view = isset($_GET["view"]) ? $_GET["view"] : default_view;
+    if ($desired_view == "display") {
+        // Display_All_Submits() ; // Function not defined in this file
+    }
+    else {
+        // store_submits_to_file() ; // Function not defined in this file
+
+        if (store_submits_to_file("yousef", "yalsayed19@gmail.com")) {
+            die("<br>Contact saved successfully" . "<br/> To visit all contacts <a href='index.php?view=display'>click here </a>");
+        }
+        else {
+            die("error saving contact");
+        }
+    }
+
     // Function to validate name
     function validateName($name) {
         if (empty($name)) {
@@ -65,88 +85,4 @@
         <input id="clear" name="clear" type="reset" value="Clear form" />
     </form>
 </body>
-</html>
-<?php
-    // Initialize $message variable
-    $message = "";
-    $message_1 = "";
-
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // This block of code will execute only if the current request method is POST.
-        // It's commonly used to handle form submissions.
-
-        // Display the contents of the $_POST superglobal array for debugging purpose
-
-        // Check if the "name" field was submitted and assign its value to $name,
-        // otherwise assign "ERROR"
-
-
-        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $message_1 = "Please enter a valid email address";
-        }
-        else{$name =$_POST["email"];}
-        
-
-        // Check if $name is empty, if it is, set $message
-        if (empty($name)||strlen($name)<2) {
-            $message = "Enter correct name";
-        }
-        else{$email =$_POST["name"];;}
-
-        if (isset($name)&&isset($email)) {
-            echo "Thank you for contacting us!<br>";
-            echo "Name: $name<br>";
-            echo "Email: $email<br>";
-        }
-    }
-
-?>
-
-<html>
-    <head>
-        <title> contact form </title>
-
-
-    </head>
-
-    <body>
-        <h3> Contact Form </h3>
-        <div id="after_submit">
-
-            
-        </div>
-        <h1>
-            
-        <?php echo $message; 
-        ?>
-        <br>
-       <?php echo $message_1; 
-
-        ?>
-        </h1>
-        <form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
-
-            <div class="row">
-                <label class="required" for="name">Your name:</label><br />
-                <input id="name" class="input" name="name" type="text" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>" size="30" /><br />
-
-            </div>
-            <div class="row">
-                <label class="required" for="email">Your email:</label><br />
-                <input id="email" class="input" name="email" type="text" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" size="30" /><br />
-
-            </div>
-            <div class="row">
-                <label class="required" for="message">Your message:</label><br />
-                <textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br />
-
-            </div>
-
-            <input id="submit" name="submit" type="submit" value="Send email" />
-            <input id="clear" name="clear" type="reset" value="clear form" />
-
-        </form>
-    </body>
-
 </html>
